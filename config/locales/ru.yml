@@ -1,0 +1,43 @@
+ru:
+  app:
+    name: Тест
+    test: Тест
+
+  activerecord:
+    models:
+      user: Пользователь
+    attributes:
+      user:
+        name: Имя
+        email: Адрес электронной почты
+        password: Пароль
+        password_confirmation: Пароль (повторно)
+        role: Роль
+      test:
+        name: Название
+        chair: Кафедра
+        course: Курс
+        group: Группа
+        content: Тест
+        cover: Загрузка теста
+        topic_id: Тема
+      topic:
+        name: Название
+        subject_id: Предмет
+      subject:
+        name: Название
+        course: Курс
+        semester: Семестр
+  helpers:
+    sure: Вы уверены?
+    submit:
+      create: Сохранить
+      submit: Сохранить
+      update: Сохранить
+  views:
+    pagination:
+      first: ⇤
+      last: ⇥
+      previous: ←
+      next: →
+      truncate: …

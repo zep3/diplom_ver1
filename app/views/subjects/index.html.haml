@@ -1,0 +1,53 @@
+-#%h1 Listing subjects
+-#
+-#%table
+-#  %tr
+-#    %th Name
+-#    %th Course
+-#    %th Semester
+-#    %th
+-#    %th
+-#    %th
+-#
+-#  - @subjects.each do |subject|
+-#    %tr
+-#      %td= subject.name
+-#      %td= subject.course
+-#      %td= subject.semester
+-#      %td= link_to 'Show', subject
+-#      %td= link_to 'Edit', edit_subject_path(subject)
+-#      %td= link_to 'Destroy', subject, :method => :delete, :data => { :confirm => 'Are you sure?' }
+-#
+-#%br
+-#
+-#= link_to 'New Subject', new_subject_path
+
+%h1 Список тем
+
+%table.table
+  %tr
+    %th= Subject.human_attribute_name(:name)
+    %th= Subject.human_attribute_name(:course)
+    %th= Subject.human_attribute_name(:semester)
+    %th
+    %th
+    %th
+
+  - @subjects.each do |subject|
+    %tr
+      %td= subject.name
+      %td= subject.course
+      %td= subject.semester
+      %td
+        = link_to 'Показать', subject
+      %td
+        -if session[:user] == 'tutor'
+          = link_to 'Изменить', edit_subject_path(subject)
+      %td
+        -if session[:user] == 'tutor'
+          = link_to 'Удалить', subject, :method => :delete, :data => { :confirm => 'Вы уверены?' }
+
+%br
+
+-if session[:user] == 'tutor'
+  = link_to 'Добавить предмет', new_subject_path

@@ -1,0 +1,32 @@
+-#%p#notice= notice
+-#
+-#%p
+-#  %b Name:
+-#  = @subject.name
+-#%p
+-#  %b Course:
+-#  = @subject.course
+-#%p
+-#  %b Semester:
+-#  = @subject.semester
+-#
+-#= link_to 'Edit', edit_subject_path(@subject)
+-#\|
+-#= link_to 'Back', subjects_path
+
+
+
+
+%p
+  %b=Subject.human_attribute_name(:name)
+  = @subject.name
+%p
+  %b=Subject.human_attribute_name(:course)
+  = @subject.course
+%p
+  %b=Subject.human_attribute_name(:semester)
+  = @subject.semester
+
+= link_to 'Редактирование', edit_subject_path(@subject),class: 'btn btn-primary'
+\|
+= link_to 'Назад', subjects_path,class: 'btn btn-primary'

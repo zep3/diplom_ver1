@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b name:
+  = @topic.name
+
+= link_to 'Редактирование', edit_topic_path(@topic),class: 'btn btn-primary'
+\|
+= link_to 'Назад', topics_path,class: 'btn btn-primary'

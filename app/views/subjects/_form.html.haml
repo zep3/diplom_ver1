@@ -1,0 +1,42 @@
+-#= form_for @subject do |f|
+-#  - if @subject.errors.any?
+-#    #error_explanation
+-#      %h2= "#{pluralize(@subject.errors.count, "error")} prohibited this subject from being saved:"
+-#      %ul
+-#        - @subject.errors.full_messages.each do |msg|
+-#          %li= msg
+-#
+-#  .field
+-#    = f.label :name
+-#    = f.text_field :name
+-#  .field
+-#    = f.label :course
+-#    = f.number_field :course
+-#  .field
+-#    = f.label :semester
+-#    = f.number_field :semester
+-#  .actions
+-#    = f.submit 'Save'
+-#
+
+
+-if session[:user] != 'stud1' and session[:user] != 'stud2'
+  = form_for @subject do |f|
+    =error_messages_for @subject
+    .form-group
+      =f.label :name
+      =f.text_field :name, class: 'form-control'
+    .form-group
+      =f.label :course
+      =f.number_field :course
+    .form-group
+      =f.label :semester
+      =f.number_field :semester
+
+    -#%li{class: ('active' if controller_name=='genres')}=link_to "Жанры",markdown_preview_url
+
+    .form-actions
+    = f.submit nil, class: 'btn btn-primary'
+-else
+  %h1
+    Не доступно

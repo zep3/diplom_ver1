@@ -1,0 +1,92 @@
+-#-#%h1 Listing tests
+-#-#
+-#-#%table
+-#-#  %tr
+-#-#    %th Name
+-#-#    %th Chair
+-#-#    %th Course
+-#-#    %th Group
+-#-#    %th Content
+-#-#    %th Cover
+-#-#    %th
+-#-#    %th
+-#-#    %th
+-#-#
+-#-#  - @tests.each do |test|
+-#-#    %tr
+-#-#      %td= test.name
+-#-#      %td= test.chair
+-#-#      %td= test.course
+-#-#      %td= test.group
+-#-#      %td= test.content
+-#-#      %td= test.cover
+-#-#      %td= link_to 'Show', test
+-#-#      %td= link_to 'Edit', edit_test_path(test)
+-#-#      %td= link_to 'Destroy', test, :method => :delete, :data => { :confirm => 'Are you sure?' }
+-#-#
+-#-#%br
+-#-#
+-#-#= link_to 'New Test', new_test_path
+-#
+-#
+-#
+-#.row
+-#  .col-md-12
+-#    .jumbotron
+-#      %h1.text-center
+-#        Тесты
+-#        -if session[:user] == 'tutor'
+-#          =link_to new_test_path,class: 'btn btn-primary' do
+-#            =fa_icon 'plus'
+-#
+-#      -@tests.each do |test|
+-#        .thumbnail
+-#          .row
+-#            .col-md-6
+-#              %h3
+-#                =link_to "#{test.name}", test
+-#              %br
+-#              Добавлен:
+-#              %span.text-muted="(#{time_ago_in_words(test.created_at)})"
+-#
+-#            .col-md-6
+-#              %br
+-#              %b #{test.chair}
+-#          -if session[:user] == 'tutor'
+-#            .row
+-#              .col-md-6
+-#                = link_to 'Редактировать', edit_test_path(test)
+-#
+-#              .col-md-6
+-#                = link_to 'Удалить', test, :method => :delete, :data => { :confirm => 'Вы уверены?' }
+-#=paginate @tests
+-#
+-#
+-#
+-#
+
+%h1 Список тестов
+
+%table.table
+  %tr
+    %th= Test.human_attribute_name(:name)
+    %th
+    %th
+    %th
+
+  - @tests.each do |test|
+    %tr
+      %td= test.name
+      %td
+        = link_to 'Показать', test
+      %td
+        -if session[:user] == 'tutor'
+          = link_to 'Изменить', edit_test_path(test)
+      %td
+        -if session[:user] == 'tutor'
+          = link_to 'Удалить', test, :method => :delete, :data => { :confirm => 'Вы уверены?' }
+
+%br
+
+-if session[:user] == 'tutor'
+  = link_to 'Добавить тест', new_test_path
